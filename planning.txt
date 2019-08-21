@@ -1,0 +1,18 @@
+- 52 cards
+- 2-player "guessing" game
+- each player gets 7 cards
+- randomly pick who goes first
+- draw pile loses cards throughout play
+- take turns (ofc)
+- players can only ask for cards they have in their hand
+- goal is to create more sets of 4 than the other player
+- try to do some sort of text visual to illustrate the game? maybe? (possibly with a matrix to form a grid that can be printed out to the player so that each item within the matrix is easily editable ?)
+- CP = Computer Player
+- HP = Human Player (the user)
+- each player draws a card at the beginning of their turn
+
+HOW CP MAKES GUESSES:
+- game tracks all of HP's guesses
+- if CP's drawn card = HP's last guess: ask for card
+- the further down the line of HP's past guesses a card is, the CP is (exponentially) less likely to remember it (define probabilities and probably use math.random() for this)
+- ie. most recent guess? 100%; second to last guess? 50% chance; guess before that? 25% chance; etc.

@@ -2,6 +2,7 @@
 import java.math.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 //sets up the main class
 public class main {
@@ -23,6 +24,8 @@ public class main {
 
 	//variable defines if game is in play still
 	static boolean isActive = true;
+
+	static Scanner scan = new Scanner(System.in);
 
 	//sets up the 'main'; aka what first runs when the program is run
 	public static void main(String[] args) {
@@ -159,14 +162,110 @@ public class main {
 			System.out.println(hpHand.get(d));
 		}
 
+		playerAsk();
+
 	}
 
 	public static void queryComp(String query) {
+		boolean gaveCard = false;
+		//tests if CP has HP's guess in-hand
+		for(int i=0; i<cpHand.size(); i++) {
+			if(cpHand.get(i).equals(query+"-H")) {
+				hpHand.add(cpHand.get(i));
+				System.out.println("Your opponent gave you: "+cpHand.get(i)+"!");
+				cpHand.remove(i);
+				gaveCard = true;
+			}
+			if(cpHand.get(i).equals(query+"-S")) {
+				hpHand.add(cpHand.get(i));
+				System.out.println("Your opponent gave you: "+cpHand.get(i)+"!");
+				cpHand.remove(i);
+				gaveCard = true;
+			}
+			if(cpHand.get(i).equals(query+"-D")) {
+				hpHand.add(cpHand.get(i));
+				System.out.println("Your opponent gave you: "+cpHand.get(i)+"!");
+				cpHand.remove(i);
+				gaveCard = true;
+			}
+			if(cpHand.get(i).equals(query+"-C")) {
+				hpHand.add(cpHand.get(i));
+				System.out.println("Your opponent gave you: "+cpHand.get(i)+"!");
+				cpHand.remove(i);
+				gaveCard = true;
+			}
+		}
+		if(gaveCard == false) {
+			System.out.println("Go Fish!");
+			userDraw();
+		}
+	}
 
+	public static void playerAsk() {
+		System.out.println("\n@ Opponent...do you have: ");
+		String input = scan.next();
+
+
+		boolean resultFound = false;
+		int index = 0;
+		while(!resultFound) {
+			if(hpHand.get(index).equals(input+"-H")) {
+				resultFound = true;
+				queryComp(input);
+			}
+			else if(hpHand.get(index).equals(input+"-S")) {
+				resultFound = true;
+				queryComp(input);
+			}
+			else if(hpHand.get(index).equals(input+"-D")) {
+				resultFound = true;
+				queryComp(input);
+			}
+			else if(hpHand.get(index).equals(input+"-C")) {
+				resultFound = true;
+				queryComp(input);
+			}
+			else if(index+1 == hpHand.size()) {
+				resultFound = true;
+				System.out.println("That's not a valid option! Please try again...\n\n");
+				playerAsk();
+			}
+		}
 	}
 
 	public static void queryUser(String query) {
-
+		boolean gaveCard = false;
+		//tests if HP has CP's guess in-hand
+		for(int i=0; i<hpHand.size(); i++) {
+			if(hpHand.get(i).equals(query+"-H")) {
+				cpHand.add(hpHand.get(i));
+				System.out.println("You gave your opponent: "+hpHand.get(i)+"!");
+				hpHand.remove(i);
+				gaveCard = true;
+			}
+			if(hpHand.get(i).equals(query+"-S")) {
+				cpHand.add(hpHand.get(i));
+				System.out.println("You gave your opponent: "+hpHand.get(i)+"!");
+				hpHand.remove(i);
+				gaveCard = true;
+			}
+			if(hpHand.get(i).equals(query+"-D")) {
+				cpHand.add(hpHand.get(i));
+				System.out.println("You gave your opponent: "+hpHand.get(i)+"!");
+				hpHand.remove(i);
+				gaveCard = true;
+			}
+			if(hpHand.get(i).equals(query+"-C")) {
+				cpHand.add(hpHand.get(i));
+				System.out.println("You gave your opponent: "+hpHand.get(i)+"!");
+				hpHand.remove(i);
+				gaveCard = true;
+			}
+		}
+		if(gaveCard == false) {
+			System.out.println("You: Go Fish!");
+			compDraw();
+		}
 	}
 
 	public static void computerTurn() {

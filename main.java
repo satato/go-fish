@@ -37,7 +37,7 @@ public class main {
 			int workingIndex = rand.nextInt(deck.size());
 			String currentCard = deck.get(workingIndex);
 			//gives the human player the randomly selected card and removes it from the deck
-			hpHand.add("currentCard");
+			hpHand.add(currentCard);
 			deck.remove(workingIndex);
 			//randomly selects a card from the deck
 			workingIndex = rand.nextInt(deck.size());
@@ -82,7 +82,7 @@ public class main {
 				int workingIndex = rand.nextInt(deck.size());
 				String currentCard = deck.get(workingIndex);
 				//gives the computer player the randomly selected card and removes it from the deck
-				cpHand.add("currentCard");
+				cpHand.add(currentCard);
 				deck.remove(workingIndex);
 			}
 		}
@@ -95,7 +95,7 @@ public class main {
 				int workingIndex = rand.nextInt(deck.size());
 				String currentCard = deck.get(workingIndex);
 				//gives the computer player the randomly selected card and removes it from the deck
-				hpHand.add("currentCard");
+				hpHand.add(currentCard);
 				deck.remove(workingIndex);
 			}
 		}
@@ -108,7 +108,7 @@ public class main {
 			int workingIndex = rand.nextInt(deck.size());
 			String currentCard = deck.get(workingIndex);
 			//gives the human player the randomly selected card and removes it from the deck
-			hpHand.add("currentCard");
+			hpHand.add(currentCard);
 			deck.remove(workingIndex);
 		}
 		else {
@@ -123,7 +123,7 @@ public class main {
 			int workingIndex = rand.nextInt(deck.size());
 			String currentCard = deck.get(workingIndex);
 			//gives the computer player the randomly selected card and removes it from the deck
-			cpHand.add("currentCard");
+			cpHand.add(currentCard);
 			deck.remove(workingIndex);
 		}
 		else {

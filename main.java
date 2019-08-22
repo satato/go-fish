@@ -212,18 +212,22 @@ public class main {
 			if(hpHand.get(index).equals(input+"-H")) {
 				resultFound = true;
 				queryComp(input);
+				guesses.add(input);
 			}
 			else if(hpHand.get(index).equals(input+"-S")) {
 				resultFound = true;
 				queryComp(input);
+				guesses.add(input);
 			}
 			else if(hpHand.get(index).equals(input+"-D")) {
 				resultFound = true;
 				queryComp(input);
+				guesses.add(input);
 			}
 			else if(hpHand.get(index).equals(input+"-C")) {
 				resultFound = true;
 				queryComp(input);
+				guesses.add(input);
 			}
 			else if(index+1 == hpHand.size()) {
 				resultFound = true;
@@ -265,6 +269,20 @@ public class main {
 		if(gaveCard == false) {
 			System.out.println("You: Go Fish!");
 			compDraw();
+		}
+	}
+
+	public static void computerThink() {
+		double likelihood;
+		int margin;
+		for(int a=0; a<guesses.size(); a++) {
+			margin = 100 / (2*a);
+			likelihood = Math.round(Math.random()*100);
+			for(int b=0; b<cpHand.size(); b++) {
+				if(cpHand.get(b).equals(guesses.get(a)+"-H")) {
+					if(likelihood<=margin) //doesnt quite work right--redesign
+				}
+			}
 		}
 	}
 

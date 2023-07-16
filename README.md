@@ -1,3 +1,2 @@
-# go-fish
-trying to make a simple text-based version of popular card game, "Go Fish", using Java
-!!INCOMPLETE!!
+# 'Go Fish'
+Originally attempted using Java in late 2019, this since-abandoned project takes on a new life in Python as of 2023.

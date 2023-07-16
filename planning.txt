@@ -1,28 +1,56 @@
+----- CP = "Computer Player" -----
+----- HP = "Human Player" --------
+
+-----------------------
+
 - 52 cards
 - 2-player "guessing" game
 - each player gets 7 cards
 - randomly pick who goes first
-- draw pile loses cards throughout play
-- take turns (ofc)
+- take turns (of course)
 - players can only ask for cards they have in their hand
-- goal is to create more sets of 4 than the other player
-- CP = Computer Player
-- HP = Human Player (the user)
-- each player draws a card at the beginning of their turn
+- goal is to create more sets of 4 than the other player (does not support sets of 2)
+
+- if (at the start or end of their turn) player has no cards in their hand but cards remain in the deck, draws a card.
+- if either player has no cards in their hand and no cards remain in the deck, all sets should be had. game over.
+
+STRUCTURES:
+-----------------------
+- list stores last 10 asks by HP
+- dictionary stores last 10 asks by CP => result (FALSE if HP didn't have it, TRUE if they did)
+- list stores HP sets 
+- list stores CP sets
+- list of probabilities (goes out to 10) for CP "remembering" cards
+- list of cards represents the deck
+- each card is its own object
+  - has "name", "type", and "value" properties
+    - For example, Ace of Spades would be... name: "Ace of Spades", type: "Spades", value: "Ace"
 
 HOW CP MAKES GUESSES:
-- game tracks all of HP's guesses
-- if CP's drawn card = HP's last guess: ask for card
-- the further down the line of HP's past guesses a card is, the CP is (exponentially) less likely to remember it (define probabilities and probably use math.random() for this)
-- ie. most recent guess? 100%; second to last guess? 50% chance; guess before that? 25% chance; etc.
+-----------------------
+- CP checks whether any of their cards exist in the list of HP guesses.
+  - if they do, takes the most recent one (lower index) (if multiple) and tries to "remember" it.
+    - if CP "remembers" it, checks whether it is a card CP already asked for and received
+      - if it is, CP tries to "remember" this as well
+        - if succeeds, tries a different card (if there is one, otherwise randomly selects a card in the current hand to ask for)
+        - if fails, tries to request it
+    - if CP fails to "remember" or none of their cards are in the list of HP guesses, randomly selects a card in the current hand to ask for.
+
+- the further down the line of HP's past guesses a card is, the CP is (exponentially) less likely to remember it.
+  - ie. most recent guess? 100%; second to last guess? 50% chance; guess before that? 25% chance; etc.
+
 
 DISPLAY EACH TURN:
-
-Opponent's Sets:
+-----------------------
+CP Sets:
 - (lists out sets)
 
-Your Sets:
+CP Card Quantity (not the actual cards, of course)
+- (lists out number of cards in CP's hand)
+
+HP Sets:
 - (lists out sets)
 
-Your Cards:
+HP Cards:
 - (lists out current hand of cards)
+
